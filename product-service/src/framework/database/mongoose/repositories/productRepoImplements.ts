@@ -12,8 +12,30 @@ export const productRepoImplements = () => {
          })
        })
     }
+    const getAllProduct = () =>{
+      return new Promise((resolve,reject)=>{
+         Product.find().then((products)=>{
+            resolve(products)
+         })
+         .catch((err)=>{
+            reject(err)
+         })
+      })
+    }
+    const getById = (id:string) => {
+      return new Promise((resolve,reject)=>{
+         Product.findById(id).then((item)=>{
+            resolve(item)
+         }).catch((err)=>{
+            reject(err)
+         })
+      })
+    }
     return {
-        addProduct
+        addProduct,
+        getAllProduct,
+        getById
     }
 }
 export type ProductRepoImplements = typeof productRepoImplements
+

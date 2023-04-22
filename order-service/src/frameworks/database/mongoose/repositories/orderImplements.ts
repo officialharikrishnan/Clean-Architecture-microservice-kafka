@@ -3,7 +3,7 @@ import { Order } from "../model/order"
 export const orderImplements = () => {
     console.log("implement");
     
-    const createOrder=(product:Array<string>)=>{
+    const createOrder=(product:object)=>{
         let order={
             product,
             status:'pending'

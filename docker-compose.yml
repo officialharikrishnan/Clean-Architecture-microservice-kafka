@@ -15,6 +15,27 @@ services:
       - 9092:9092
     environment:
        KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-       KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://127.0.0.1:9092'
+       KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://localhost:9092'
        ALLOW_ANONYMOUS_LOGIN : yes
        ALLOW_PLAINTEXT_LISTENER : yes
+#   myapp:
+#     image: product-service
+#     container_name: product-service
+#     ports:
+#       - 5400:5400
+#   mongodb:
+#     container_name: mongodb
+#     image: mongo:6.0
+#     volumes:
+#       - ~/mongo:/data/db
+#     ports:
+#       - "27017:27017"
+#     environment:
+#       - MONGO_INITDB_ROOT_USERNAME=app_user
+#       - MONGO_INITDB_ROOT_PASSWORD=app_password
+#       - MONGO_INITDB_DATABASE=admin
+#     networks:
+#       - node-webapp-network
+# networks:
+#   node-webapp-network:
+#     driver: bridge

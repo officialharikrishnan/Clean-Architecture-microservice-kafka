@@ -7,5 +7,7 @@ const route = (app:Application) => {
 const controller = productController(productRepoInt,productRepoImplements) // passing interface and implements to conroller
 app.route('/addproduct')
 .post(controller.addProduct) // invoking addproduct written in controller
+app.route('/getallproduct').get(controller.getAllProducts)
 }
+
 export default route

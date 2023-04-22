@@ -12,8 +12,28 @@ export const productRepoInt = (repository:ReturnType<ProductRepoImplements>) => 
             return err
         })
     }
+    const getAllProduct = async () =>{
+        return await repository.getAllProduct()
+        .then((products)=>{
+            return products
+        })
+        .catch((err)=>{
+            return err
+        })
+    }
+    const getById =  async (id:string) => {
+        return await repository.getById(id)
+        .then((item)=>{
+            return item
+        })
+        .catch((err)=>{
+            return err
+        })
+    }
     return {
-        addProduct
+        addProduct,
+        getAllProduct,
+        getById
     }
 }
 export type ProductRepoInt = typeof productRepoInt

@@ -1,5 +1,6 @@
 import { ProductRepoInt } from "../application/repositories/productRepoInt";
 import { addProductUse } from "../application/useCase/addProduct";
+import { getAllProductUse, getByIdUse } from "../application/useCase/getProduct";
 import { ProductRepoImplements } from "../framework/database/mongoose/repositories/productRepoImplements";
 import { Request,Response } from "express";
 
@@ -14,8 +15,24 @@ export const productController = (
             res.send(response)
         })
     }
+    const getAllProducts = (req:Request,res:Response) =>{
+        getAllProductUse(repository)
+        .then((products)=>{
+            res.send(products)
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+    }
+    const getById =async  (id:string) =>{
+          return getByIdUse(id,repository).then((item)=>{
+            return item
+        })
+    }
 
     return {
-        addProduct
+        addProduct,
+        getAllProducts,
+        getById
     }
 }

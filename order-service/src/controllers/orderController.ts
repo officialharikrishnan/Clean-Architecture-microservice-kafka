@@ -1,10 +1,9 @@
 import { OrderRepoInt } from "../application/repositories/orderRepoInt";
 import { createOrderUse } from "../application/useCases/createOrder";
 import { OrderImplements } from "../frameworks/database/mongoose/repositories/orderImplements";
-import { Request,Response } from "express";
-import { sendMessage } from "../frameworks/services/kafka/methods";
+import { Request,Response,NextFunction } from "express";
+import { getProductById } from "../frameworks/services/kafka/produce";
 
-const test=['1','2']
 export const orderController = (
     OrderRepoInt:OrderRepoInt,
     OrderImplements:OrderImplements
@@ -12,10 +11,15 @@ export const orderController = (
     const repository = OrderRepoInt(OrderImplements())
     const createOrder = (req:Request,res:Response) => {
         const {id} = req.body
-        sendMessage('getProduct',id)
-        createOrderUse(test,repository)
+        getProductById(id)
+    }
+    const placeOrder = (order:object) =>{
+        createOrderUse(order,repository)
+        console.log("order created");
+        
     }
     return {
-        createOrder
+        createOrder,
+        placeOrder
     }
 }

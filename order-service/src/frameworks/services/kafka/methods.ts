@@ -1,5 +1,7 @@
-import { Message } from "kafkajs";
+
 import { kafka } from "./connection";
+import Emitter from 'events'
+const eventEmit = new Emitter()
 
 const producer=kafka.producer()
 
@@ -27,7 +29,7 @@ class KafkaConsumer{
                 if(message.value !== null){
                     try{
                         const data = JSON.parse(message.value.toString())
-                        console.log(data);
+                        eventEmit.emit(topic,data)
                         
                     }
                     catch(err){
@@ -41,5 +43,6 @@ class KafkaConsumer{
 }
 export {
     sendMessage,
-    KafkaConsumer
+    KafkaConsumer,
+    eventEmit
 }

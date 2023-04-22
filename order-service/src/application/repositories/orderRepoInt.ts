@@ -4,7 +4,7 @@ import { OrderImplements } from "../../frameworks/database/mongoose/repositories
 export const orderRepoInt = (repository:ReturnType <OrderImplements>)=>{
     console.log("interface");
     
-    const createOrder = (product:Array<string>) =>{
+    const createOrder = (product:object) =>{
         repository.createOrder(product)
     }
     return {

@@ -6,7 +6,7 @@ import { consumeMessage } from './framework/services/kafka/consume';
 const app:Application = express()
 
 configServer(app)
-startServer(app,5400)
+startServer(app,5800)
 DbConnection()
 route(app)
 consumeMessage()
