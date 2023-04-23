@@ -15,8 +15,6 @@ export const consumeMessage = () => {
         console.log(data);
         
         controller.getById(data).then((data:any)=>{
-            console.log("consume",data);
-            
             sendProductById(topic2,data)
         })
     })

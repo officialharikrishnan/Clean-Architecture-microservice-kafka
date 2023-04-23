@@ -13,6 +13,19 @@ spec:
         app: order
     spec:
       containers:
-      - name: order
-        image: harikrishnanpnr/orders
+        - name: order-container
+          image: harikrishnanpnr/order-latest
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-srv
+spec:
+  selector:
+    app: order
+  ports:
+    - name: order
+      protocol: TCP
+      port: 5300
+      targetPort: 5300

@@ -13,7 +13,19 @@ spec:
         app: product
     spec:
       containers:
-      - name: product
-        image: product
-        ports:
-        - containerPort: 8080
+      - name: product-container
+        image: harikrishnanpnr/product-latest
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-srv
+spec:
+  selector:
+    app: product
+  ports:
+    - name: product
+      protocol: TCP
+      port: 5800
+      targetPort: 5800
