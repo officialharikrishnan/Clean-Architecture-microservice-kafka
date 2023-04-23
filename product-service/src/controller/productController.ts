@@ -10,6 +10,8 @@ export const productController = (
 ) => {
     const repository = productRepoInt(productImpl()) // getting return functions from implements to interface functions
     const addProduct = (req:Request,res:Response) => {
+        console.log("caled>>");
+        
         const {name,price}:{name:string,price:number} = req.body // getting data from router
         addProductUse(name,price,repository).then((response)=>{ // passing data and inteface functions into usecase
             res.send(response)
