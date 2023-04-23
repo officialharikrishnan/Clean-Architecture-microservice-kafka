@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: product.com
+      http:
+        paths:
+          - path: /getallproduct
+            pathType: Prefix
+            backend:
+              service:
+                name: product-srv
+                port:
+                  number: 5800
